@@ -5,15 +5,20 @@ import { ImagePlus, X, Upload, Trash2 } from "lucide-react"
 import Image from "next/image"
 import { useCallback, useState } from "react"
 import { cn } from "@/lib/utils"
-import  { ProductInfo } from "@/components/AddProduct"
+import { Loader } from "@/components/ui/loader";
+import { Dispatch, SetStateAction } from "react";
+import { useToast } from "@/components/ui/toast-1" 
 
 interface childProps{
-  product: ProductInfo
+  urls: string[];
+  setUrls: Dispatch<SetStateAction<string[]>>; 
 }
 
-export default function PhotoUpload({product}:childProps) {
-  const [urls,setUrls]=useState<string[]>([]);
+export default function PhotoUpload({ urls, setUrls}:childProps) {
+    const { showToast } = useToast()
+    const[isUploading,setIsUploading] = useState(false)
   const uploadImage = async (file: File) => {
+    setIsUploading(true)
   const formData = new FormData();
   formData.append("file", file);
   formData.append("upload_preset", "zyrox_product");
@@ -25,10 +30,15 @@ export default function PhotoUpload({product}:childProps) {
     method: "POST",
     body: formData,
   });
-  
+    if (!res.ok) {
+        showToast("Upload failed ❌", "error", "bottom-right") 
+        throw new Error("Upload failed")
+        setIsUploading(false)
+      }
   const data = await res.json();
   console.log(data)
   console.log(data.secure_url);
+  setIsUploading(false)
   return data.secure_url;
 };
 
@@ -43,7 +53,7 @@ const {
 onUpload: async (file) => {
   try {
     const url = await uploadImage(file);
-      setUrls(prevUrl =>[...prevUrl,url]);
+    setUrls(prevUrl =>[...prevUrl,url]);
     console.log("Uploaded to Cloudinary:", url);
   } catch (err) {
     console.error("Cloudinary upload failed:", err);
@@ -87,7 +97,48 @@ onUpload: async (file) => {
   )
 
   return (
-    <div className="w-[40%]  space-y-6  rounded-xl border border-border bg-card p-6 shadow-sm">
+    <>
+    <div className={`w-[40%] space-y-6 rounded-xl border border-border bg-card overflow-auto p-6 shadow-sm ${isUploading ? 'opacity-50 pointer-events-none blur-sm' : ''}`}>
+      <h3 className="text-xl font-medium">Uploaded Images</h3>
+
+  <div className="w-full space-y-6 bg-card p-6 ">
+    {urls.length === 0 && (
+      <p className="text-sm text-muted-foreground">No images uploaded yet</p>
+    )}
+
+    <div className="flex flex-col gap-2 h-full w-full ">
+      {urls.map((url, index) => (
+        <div
+          key={index}
+          className="flex items-center gap-2  p-2 rounded"
+        >
+          {/* Image preview */}
+          <div className="w-full h-60 relative rounded overflow-hidden">
+            <Image
+              src={url}
+              alt={`Uploaded ${index}`}
+              fill
+              className="object-cover "
+            />
+          </div>
+
+          {/* Optional URL as text */}
+          {/* <span className="truncate">{url}</span> */}
+
+          {/* Delete button */}
+          <button
+            onClick={() => setUrls(prev => prev.filter(u => u !== url))}
+            className="ml-auto rounded-full p-1 hover:bg-muted"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+    <div className={`w-[40%]  space-y-6  rounded-xl border border-border bg-card p-6 shadow-sm `}>
       <div className="space-y-2">
         <h3 className="text-xl font-medium">Image Upload</h3>
         <p className="text-md text-muted-foreground">
@@ -155,7 +206,7 @@ onUpload: async (file) => {
               </Button>
             </div>
           </div>
-          {fileName && (
+          {/* {fileName && (
             <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
               <span className="truncate">{fileName}</span>
               <button
@@ -165,9 +216,16 @@ onUpload: async (file) => {
                 <X className="h-4 w-4" />
               </button>
             </div>
-          )}
+          )} */}
         </div>
       )}
     </div>
+    {isUploading && (
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/80">
+         <Loader variant="circular" />
+          <p className="mt-4 text-lg font-semibold text-gray-700">Uploading Image...</p>
+        </div>
+      )}
+    </>
   )
 }
