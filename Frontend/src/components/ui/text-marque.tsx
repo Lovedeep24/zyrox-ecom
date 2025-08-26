@@ -42,7 +42,7 @@ const Component = forwardRef<HTMLDivElement, ComponentProps>(
     useAnimationFrame((t, delta) => {
       if (!hasStarted.current) return;
 
-      let moveBy = baseVelocity * (delta / 1000);
+      const moveBy = baseVelocity * (delta / 1000);
       baseX.set(baseX.get() + moveBy);
     });
 

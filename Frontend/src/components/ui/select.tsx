@@ -79,7 +79,7 @@ const SelectTrigger = ({ className, children, ...props }: AriaButtonProps) => (
   </AriaButton>
 )
 
-const SelectPopover = ({ className, ...props }: AriaPopoverProps) => (
+const SelectPopover = ({ ...props }: AriaPopoverProps) => (
   <Popover
   placement="bottom"
   className="w-[--trigger-width] z-[9999]"
