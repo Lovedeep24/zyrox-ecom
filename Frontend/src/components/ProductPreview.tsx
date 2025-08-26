@@ -203,7 +203,7 @@ const launchProduct = async(product:ProductInfo)=>{
       {finalizeProduct ? (<RippleButton onDoubleClick={()=>launchProduct(product)} className='w-full bg-black text-white' disabled={!finalizeProduct} rippleColor="#ADD8E6">Live Product</RippleButton>):
       (<Button variant="primary" className='w-full' onClick={finalizeProductInfo}>
         <ListCheckIcon/>
-        Finalize Product
+        {loading?"finalizing...":"Finalize Product"}
       </Button>)
         }
     </div>
