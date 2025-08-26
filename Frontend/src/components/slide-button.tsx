@@ -23,13 +23,12 @@ import { Button, ButtonProps } from "@/components/ui/button"
 
 const DRAG_CONSTRAINTS = { left: 0, right: 155 }
 const DRAG_THRESHOLD = 0.9
-
+import type { Transition } from "framer-motion"
 const BUTTON_STATES = {
   initial: { width: "12rem" },
   completed: { width: "8rem" },
 }
-
-const ANIMATION_CONFIG = {
+const ANIMATION_CONFIG: { spring: Transition } = {
   spring: {
     type: "spring",
     stiffness: 400,
@@ -37,7 +36,6 @@ const ANIMATION_CONFIG = {
     mass: 0.8,
   },
 }
-
 type StatusIconProps = {
   status: string
 }
