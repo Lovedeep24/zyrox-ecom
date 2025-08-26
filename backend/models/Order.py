@@ -7,7 +7,7 @@ from datetime import datetime
 
 # Embedded document for products in the order
 class OrderProduct(EmbeddedDocument):
-    product = ReferenceField("Product")  # refers to Product collection
+    product = ReferenceField("products")  # refers to Product collection
     quantity = IntField(required=True)
     priceAtPurchase = FloatField(required=True)
 

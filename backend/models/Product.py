@@ -12,7 +12,7 @@ class Size(EmbeddedDocument):
 
 # Review as embedded document
 class Review(EmbeddedDocument):
-    user = ReferenceField("User")  # refers to User collection
+    user = ReferenceField("users")  # refers to User collection
     rating = FloatField()
     createdAt = DateTimeField(default=datetime.utcnow)
 
@@ -20,19 +20,19 @@ class Review(EmbeddedDocument):
 class Product(Document):
     name = StringField(required=True)
     description = StringField()
-    price = FloatField(required=True)
+    price = IntField(required=True)
     size = ListField(EmbeddedDocumentField(Size))
     material = StringField()
     category = StringField()
-    gender = StringField(choices=["male", "female", "unisex"])
+    gender = StringField(choices=["Male", "Female", "Unisex"])
     brand = StringField()
     photos = ListField(StringField())
     tags = ListField(StringField())
-    availableStock = IntField()
+    availableStock = IntField(default=0)
     rating = FloatField(default=0)
     reviews = ListField(EmbeddedDocumentField(Review))
     isOnSale = BooleanField(default=False)
-    salePercent = FloatField(default=0)
+    salePercent = IntField(default=0)
     isDeleted = BooleanField(default=False)
     createdAt = DateTimeField(default=datetime.utcnow)
 
