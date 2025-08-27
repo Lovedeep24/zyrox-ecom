@@ -124,7 +124,6 @@ export default function Home() {
       {/* <div className="h-screen w-full">
         <AnimatedSections />
       </div> */}
-     
       </>
-  );
+  ); 
 }

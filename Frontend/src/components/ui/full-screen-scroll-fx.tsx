@@ -11,7 +11,7 @@ import React, {
 } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import Image from "next/image";
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -102,8 +102,7 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
 
       durations = { change: 0.7, snap: 800 },
       reduceMotion,
-      smoothScroll = false, // enable if you install Lenis
-
+     
       bgTransition = "fade",
       parallaxAmount = 4,
 
@@ -457,16 +456,20 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
     }, []);
 
     // CSS vars
-    const cssVars: CSSProperties = {
-      ["--fx-font" as any]: fontFamily,
-      ["--fx-text" as any]: colors.text ?? "rgba(245,245,245,0.92)",
-      ["--fx-overlay" as any]: colors.overlay ?? "rgba(0,0,0,0.35)",
-      ["--fx-page-bg" as any]: colors.pageBg ?? "#fff",
-      ["--fx-stage-bg" as any]: colors.stageBg ?? "#000",
-      ["--fx-gap" as any]: `${gap}rem`,
-      ["--fx-grid-px" as any]: `${gridPaddingX}rem`,
-      ["--fx-row-gap" as any]: "10px",
-    };
+type CSSVariables = CSSProperties & {
+  [key: `--${string}`]: string | number;
+};
+
+const cssVars: CSSVariables = {
+  "--fx-font": fontFamily,
+  "--fx-text": colors.text ?? "rgba(245,245,245,0.92)",
+  "--fx-overlay": colors.overlay ?? "rgba(0,0,0,0.35)",
+  "--fx-page-bg": colors.pageBg ?? "#fff",
+  "--fx-stage-bg": colors.stageBg ?? "#000",
+  "--fx-gap": `${gap}rem`,
+  "--fx-grid-px": `${gridPaddingX}rem`,
+  "--fx-row-gap": "10px",
+};
 
     return (
       <div
@@ -492,7 +495,7 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
                       s.renderBackground(index === i, lastIndexRef.current === i)
                     ) : (
                       <>
-                        <img
+                        <Image
                           ref={(el) => el && (bgRefs.current[i] = el)}
                           src={s.background}
                           alt=""
