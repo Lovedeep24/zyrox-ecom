@@ -121,9 +121,9 @@ export default function Home() {
       </div>
        <Categories/>
          <CategoriesTeam />
-      {/* <div className="h-screen w-full">
+      <div className="h-screen w-full">
         <AnimatedSections />
-      </div> */}
+      </div>
       </>
   ); 
 }
