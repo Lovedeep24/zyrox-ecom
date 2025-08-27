@@ -63,7 +63,6 @@ export type FullScreenFXProps = {
   // Motion
   durations?: Durations;
   reduceMotion?: boolean;
-  smoothScroll?: boolean; // if you use Lenis, set to true and install lenis
 
   // Background transition
   bgTransition?: "fade" | "wipe"; // default "fade"
