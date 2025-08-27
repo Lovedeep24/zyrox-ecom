@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Component from '@/components/ui/text-marque';
 import AnimatedSections from "@/components/ui/animated-sections-1";
+import CategoriesTeam from "@/components/CategoriesTeam";
+import Categories from "@/components/Categories";
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -45,7 +47,7 @@ export default function Home() {
           <p className="mt-2 w-[60%] text-lg md:text-xl drop-shadow">
             This is where culture meets Football.
           </p>
-          <button className="mt-6 px-6 py-3 bg-transparent text-white border-2 rounded-lg shadow-lg transition">
+          <button className="mt-6 px-6 py-3 bg-transparent text-white border-2  shadow-lg transition">
             SHOP NOW
           </button>
         </div>
@@ -61,7 +63,7 @@ export default function Home() {
       </div>
 
       <div className="flex items-center justify-center h-170 w-full relative bg-no-repeat bg-cover bg-center"   style={{ backgroundImage: "url('https://i.pinimg.com/1200x/3e/d7/37/3ed7377fd5aa54f282a93329396564f6.jpg')" }}>
-           <div className="absolute inset-0 bg-black/40"></div>
+           {/* <div className="absolute inset-0 bg-black/40"></div> */}
                <div className="relative text-center text-white px-4">
                  <h1 className="text-3xl sm:text-6xl font-medium mb-4">
                    CLEARANCE SALE
@@ -69,8 +71,8 @@ export default function Home() {
                  <p className="text-sm sm:text-lg  mb-6">
                    Score top jerseys and gear at unbeatable prices. Limited stock, limited time grab yours before they’re gone!
                  </p>
-                 <button className="px-3 py-1 sm:px-6 sm:py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition">
-                   Shop Now
+                 <button className="px-3 py-1 sm:px-6 sm:py-3 bg-transparent text-white border font-semibold  hover:underline">
+                   Shop Now  <ArrowRight className="inline-block ml-1" />
                  </button>
                </div>
         </div>
@@ -92,7 +94,10 @@ export default function Home() {
                     "url('https://i.pinimg.com/736x/b6/af/e5/b6afe5d08008cdbd792f2754a49df5ce.jpg')",
                 }}
               ></div>
-              <p className="relative z-10 text-2xl cursor-pointer font-medium text-white inline-block p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:underline">
+             <p className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 
+              text-lg sm:text-2xl cursor-pointer font-medium text-[#0C1929] 
+              opacity-100 sm:opacity-0 sm:group-hover:opacity-100 
+              transition-opacity duration-300 hover:underline" >
                 MENS COLLECTION <ArrowRight className="inline-block ml-2" />
               </p>
           </div>
@@ -105,22 +110,20 @@ export default function Home() {
                     "url('https://i.pinimg.com/1200x/01/14/93/011493ac5d2c3e62d0fefa0dcf6e0b42.jpg')",
                 }}
               ></div>
-              <p className="relative z-10 text-2xl cursor-pointer font-medium text-white inline-block p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:underline">
+              <p
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 
+                  text-lg sm:text-2xl cursor-pointer font-medium text-[#0C1929] 
+                  opacity-100 sm:opacity-0 sm:group-hover:opacity-100 
+                  transition-opacity duration-300 hover:underline">
                 WOMEN COLLECTION <ArrowRight className="inline-block ml-2" />
               </p>
           </div>
       </div>
-       <div className="w-full border-2 flex flex-col h-180">
-          <div className=" p-4 border-2 flex h-[8%] text-4xl justify-between cursor-pointer font-semibold w-full">
-            <p className="hover:underline">FOR YOU</p>
-            <p className=" hover:underline flex w-auto">Explore all <ArrowRight className="ml-2 size-10" /></p></div>
-          <div className="w-full h-[92%] border-2 border-red-900">
-                
-          </div>
-      </div>
-      <div className="h-screen w-full">
+       <Categories/>
+         <CategoriesTeam />
+      {/* <div className="h-screen w-full">
         <AnimatedSections />
-      </div>
+      </div> */}
      
       </>
   );
