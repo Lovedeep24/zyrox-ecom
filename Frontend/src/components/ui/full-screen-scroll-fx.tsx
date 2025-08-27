@@ -454,10 +454,8 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // CSS vars
-type CSSVariables = CSSProperties & {
-  [key: `--${string}`]: string | number;
-};
+// CSS vars
+type CSSVariables = React.CSSProperties & Record<string, string | number>;
 
 const cssVars: CSSVariables = {
   "--fx-font": fontFamily,
@@ -469,6 +467,7 @@ const cssVars: CSSVariables = {
   "--fx-grid-px": `${gridPaddingX}rem`,
   "--fx-row-gap": "10px",
 };
+
 
     return (
       <div
