@@ -163,7 +163,9 @@ const wordRefs = useRef<(HTMLSpanElement | null)[][]>([]);
       const words = text.split(/\s+/).filter(Boolean);
       return words.map((w, i) => (
         <span className="fx-word-mask" key={i}>
-          <span className="fx-word" ref={(el) => el && tempWordBucket.current.push(el)}>{w}</span>
+          <span className="fx-word" ref={(el) => {
+            if (el) tempWordBucket.current.push(el);
+          }}>{w}</span>
           {i < words.length - 1 ? " " : null}
         </span>
       ));
