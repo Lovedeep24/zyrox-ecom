@@ -133,7 +133,8 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
     const fixedSectionRef = useRef<HTMLDivElement | null>(null);
 
     const bgRefs = useRef<HTMLImageElement[]>([]);
-    const wordRefs = useRef<HTMLSpanElement[][]>([]);
+const wordRefs = useRef<(HTMLSpanElement | null)[][]>([]);
+
 
     const leftTrackRef = useRef<HTMLDivElement | null>(null);
     const rightTrackRef = useRef<HTMLDivElement | null>(null);
