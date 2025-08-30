@@ -64,7 +64,7 @@ export default function Home() {
           </Component>
         </div>
         <div className="w-full sm:flex items-center justify-center h-150 ">
-          <div className="group relative flex items-center justify-center w-full sm:w-[50%] h-[50%] sm:h-full p-2 overflow-hidden">
+          <div className="group relative cursor-pointer flex items-center justify-center w-full sm:w-[50%] h-[50%] sm:h-full p-2 overflow-hidden">
               <div
                 className="absolute inset-0 bg-no-repeat bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                 style={{
@@ -72,15 +72,23 @@ export default function Home() {
                     "url('https://i.pinimg.com/736x/b6/af/e5/b6afe5d08008cdbd792f2754a49df5ce.jpg')",
                 }}
               ></div>
-             <p className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 
-              text-lg sm:text-2xl cursor-pointer font-medium text-[#0C1929] 
+              <p
+         className="
+              absolute z-10 text-lg sm:text-2xl sm:font-semibold font-medium text-[#52A8DB] 
               opacity-100 sm:opacity-0 sm:group-hover:opacity-100 
-              transition-opacity duration-300 hover:underline" >
-                MENS COLLECTION <ArrowRight className="inline-block ml-2" />
+              whitespace-nowrap transition-opacity duration-300
+              bottom-4 right-4 
+
+              sm:right-4 sm:top-1/2 sm:-translate-y-1/2 
+              sm:[writing-mode:vertical-rl] sm:[text-orientation:upright]
+              sm:bottom-auto sm:left-auto
+            "
+              >
+                MENS
               </p>
           </div>
 
-           <div className="group relative flex items-center justify-center w-full sm:w-[50%] h-[50%] sm:h-full p-2 overflow-hidden">
+           <div className="group relative cursor-pointer  flex items-center justify-center w-full sm:w-[50%] h-[50%] sm:h-full p-2 overflow-hidden">
               <div
                 className="absolute inset-0 bg-no-repeat bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                 style={{
@@ -89,11 +97,18 @@ export default function Home() {
                 }}
               ></div>
               <p
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 
-                  text-lg sm:text-2xl cursor-pointer font-medium text-[#0C1929] 
+                className="
+                  absolute z-10 text-lg sm:text-2xl sm:font-semibold font-medium text-[#23539F] font-stretch-ultra-expanded 
                   opacity-100 sm:opacity-0 sm:group-hover:opacity-100 
-                  transition-opacity duration-300 hover:underline">
-                WOMEN COLLECTION <ArrowRight className="inline-block ml-2" />
+                  whitespace-nowrap transition-opacity duration-300
+                  bottom-4 right-4 
+
+                  sm:left-4 sm:top-1/2 sm:-translate-y-1/2 
+                  sm:[writing-mode:vertical-rl] sm:[text-orientation:upright]
+                  sm:bottom-auto sm:right-auto
+                "
+              >
+                WOMENS
               </p>
           </div>
       </div>

@@ -141,6 +141,9 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+.writing-mode-vertical-rl {
+  writing-mode: vertical-rl;
+}
 
 .dark {
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
