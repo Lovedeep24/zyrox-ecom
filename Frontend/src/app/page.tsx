@@ -5,6 +5,7 @@ import Component from '@/components/ui/text-marque';
 import AnimatedSections from "@/components/ui/animated-sections-1";
 import CategoriesTeam from "@/components/CategoriesTeam";
 import Categories from "@/components/Categories";
+import HotCategories from "@/components/HotCategories";
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -53,17 +54,21 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="hidden  sm:flex flex-col bg-[#F6F7F4] items-center justify-center h-90 w-full ">
+         <HotCategories/>
+      {/* <div className="hidden  sm:flex flex-col bg-[#F6F7F4] items-center justify-center h-90 w-full ">
         <div className="flex w-[15%] h-[30%] flex-col items-center justify-end relative bg-no-repeat bg-contain bg-center"  style={{ backgroundImage: "url('https://fulltimestore.in/cdn/shop/files/Untitled_design.png?v=1748178404&width=2000')" }}>
           <p className=" text-xl font-bold ">BE REAL YOU</p>
         </div>
         <p className="text-[#6A6A69] text-base w-[80%] mt-3 text-center">
           Football is more than just a sport, it&apos;s a passion, a community, and a way of life. In recent years, the love for football has been growing rapidly across India, reaching fans, where the spirit and enthusiasm for the game are just as powerful.
         </p>
+      </div> */}
+      
+      <div className="h-screen w-full">
+        <AnimatedSections />
       </div>
-
-      <div className="flex items-center justify-center h-170 w-full relative bg-no-repeat bg-cover bg-center"   style={{ backgroundImage: "url('https://i.pinimg.com/1200x/3e/d7/37/3ed7377fd5aa54f282a93329396564f6.jpg')" }}>
-           {/* <div className="absolute inset-0 bg-black/40"></div> */}
+      
+      {/* <div className="flex items-center justify-center h-170 w-full relative bg-no-repeat bg-cover bg-center"   style={{ backgroundImage: "url('https://i.pinimg.com/1200x/3e/d7/37/3ed7377fd5aa54f282a93329396564f6.jpg')" }}>
                <div className="relative text-center text-white px-4">
                  <h1 className="text-3xl sm:text-6xl font-medium mb-4">
                    CLEARANCE SALE
@@ -75,7 +80,7 @@ export default function Home() {
                    Shop Now  <ArrowRight className="inline-block ml-1" />
                  </button>
                </div>
-        </div>
+        </div> */}
         <div className='h-[80px] sm:h-[180px] grid place-content-center'>
          <Component
           delay={500}
@@ -121,9 +126,32 @@ export default function Home() {
       </div>
        <Categories/>
          <CategoriesTeam />
-      <div className="h-screen w-full">
+      {/* <div className="h-screen w-full">
         <AnimatedSections />
+      </div> */}
+      
+      <div className="hidden  sm:flex flex-col bg-[#F6F7F4] items-center justify-center h-90 w-full ">
+        <div className="flex w-[15%] h-[30%] flex-col items-center justify-end relative bg-no-repeat bg-contain bg-center"  style={{ backgroundImage: "url('https://fulltimestore.in/cdn/shop/files/Untitled_design.png?v=1748178404&width=2000')" }}>
+          <p className=" text-xl font-bold ">BE REAL YOU</p>
+        </div>
+        <p className="text-[#6A6A69] text-base w-[80%] mt-3 text-center">
+          Football is more than just a sport, it&apos;s a passion, a community, and a way of life. In recent years, the love for football has been growing rapidly across India, reaching fans, where the spirit and enthusiasm for the game are just as powerful.
+        </p>
       </div>
+        <div className="flex items-center justify-center h-170 w-full relative bg-no-repeat bg-cover bg-center"   style={{ backgroundImage: "url('https://i.pinimg.com/1200x/3e/d7/37/3ed7377fd5aa54f282a93329396564f6.jpg')" }}>
+               <div className="relative text-center text-white px-4">
+                 <h1 className="text-3xl sm:text-6xl font-medium mb-4">
+                   CLEARANCE SALE
+                 </h1>
+                 <p className="text-sm sm:text-lg  mb-6">
+                   Score top jerseys and gear at unbeatable prices. Limited stock, limited time grab yours before they’re gone!
+                 </p>
+                 <button className="px-3 py-1 sm:px-6 sm:py-3 bg-transparent text-white border font-semibold  hover:underline">
+                   Shop Now  <ArrowRight className="inline-block ml-1" />
+                 </button>
+               </div>
+        </div>
+        
       </>
   ); 
 }

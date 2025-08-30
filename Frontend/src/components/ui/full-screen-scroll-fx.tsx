@@ -504,6 +504,7 @@ const cssVars: CSSVariables = {
                           }}
                           src={s.background}
                           alt=""
+                          fill
                           className="fx-bg-img"
                         />
                         <div className="fx-bg-overlay" />
@@ -646,7 +647,7 @@ const cssVars: CSSVariables = {
           .fx-bg { position: absolute; inset: 0; }
           .fx-bg-img {
             position: absolute; inset: -10% 0 -10% 0;
-            width: 100%; height: 120%; object-fit: cover;
+            width: 100%; height: 120%; object-fit: contain;
             filter: brightness(0.8);
             opacity: 0;
             will-change: transform, opacity;

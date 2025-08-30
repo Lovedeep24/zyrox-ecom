@@ -14,7 +14,7 @@ const sections = [
     leftLabel: "Liverpool",
     title: <>Liverpool</>,
     rightLabel: "Liverpool",
-    background: "https://i.pinimg.com/1200x/19/e0/3c/19e03c3e8fe418f1a07d1916cb66e09d.jpg",
+    background: "https://i.pinimg.com/1200x/48/9e/90/489e90f31bb7b1978a4b3e6845ffadf9.jpg",
     audioSrc: "/sfx/whoosh-02.mp3",
   },
   {
@@ -35,7 +35,7 @@ const sections = [
     leftLabel: "PSG",
     title: <>PSG</>,
     rightLabel: "PSG",
-    background: "https://i.pinimg.com/1200x/0a/fd/fd/0afdfda2e37d76483c097b08530ff08a.jpg",
+    background: "https://i.pinimg.com/1200x/63/d2/34/63d234d7a6e1df903c40b3603897ea98.jpg",
     audioSrc: "/sfx/whoosh-02.mp3",
   },
   // ...
