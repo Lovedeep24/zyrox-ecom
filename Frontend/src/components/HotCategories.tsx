@@ -54,8 +54,6 @@ export default function HotCategories() {
                   width={300}
                   className="w-full h-full object-cover rounded-2xl transition-opacity duration-500 group-hover:opacity-0"
                 />
-
-                {/* Hover Image */}
                 <Image
                   src={def.img2} // second image
                   alt={def.name}

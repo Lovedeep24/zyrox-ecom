@@ -73,7 +73,7 @@ export default function Home() {
                 }}
               ></div>
               <p
-         className="
+              className="
               absolute z-10 text-lg sm:text-2xl sm:font-semibold font-medium text-[#52A8DB] 
               opacity-100 sm:opacity-0 sm:group-hover:opacity-100 
               whitespace-nowrap transition-opacity duration-300
@@ -114,9 +114,9 @@ export default function Home() {
       </div>
        <Categories/>
       <CategoriesTeam />
-      <div className="hidden  sm:flex flex-col bg-[#F6F7F4] items-center justify-center h-90 w-full ">
+      <div className="flex flex-col bg-[#F6F7F4] items-center justify-center h-90 w-full ">
         <div className="flex w-[15%] h-[30%] flex-col items-center justify-end relative bg-no-repeat bg-contain bg-center"  style={{ backgroundImage: "url('https://fulltimestore.in/cdn/shop/files/Untitled_design.png?v=1748178404&width=2000')" }}>
-          <p className=" text-xl font-bold ">BE REAL YOU</p>
+          <p className=" text-xl font-bold text-nowrap">BE REAL YOU</p>
         </div>
         <p className="text-[#6A6A69] text-base w-[80%] mt-3 text-center">
           Football is more than just a sport, it&apos;s a passion, a community, and a way of life. In recent years, the love for football has been growing rapidly across India, reaching fans, where the spirit and enthusiasm for the game are just as powerful.
@@ -135,9 +135,9 @@ export default function Home() {
                  </button>
                </div>
         </div>
-              <div className="hidden  sm:flex flex-col bg-[#F6F7F4] items-center justify-center h-90 w-full ">
+              <div className="flex flex-col bg-[#F6F7F4] items-center justify-center h-90 w-full ">
         <div className="flex w-[15%] h-[30%] flex-col items-center justify-end relative bg-no-repeat bg-contain bg-center"  style={{ backgroundImage: "url('https://fulltimestore.in/cdn/shop/files/Untitled_design.png?v=1748178404&width=2000')" }}>
-          <p className=" text-xl font-bold ">BE REAL YOU</p>
+          <p className=" text-xl font-bold text-nowrap">BE REAL YOU</p>
         </div>
         <p className="text-[#6A6A69] text-base w-[80%] mt-3 text-center">
           Football is more than just a sport, it&apos;s a passion, a community, and a way of life. In recent years, the love for football has been growing rapidly across India, reaching fans, where the spirit and enthusiasm for the game are just as powerful.
