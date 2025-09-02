@@ -18,7 +18,7 @@ const ProductTemplate: React.FC<ProductProps> = ({ id, name, price, onSale = fal
   key={id}
   className="group flex flex-col items-center justify-center  bg-[#FBFAF8] rounded-md shadow-sm overflow-hidden 
              border cursor-pointer transition hover:shadow-md
-              w-[100%]  h-[400px]" >
+              w-[100%]  h-[450px]" >
   <div className="relative w-full h-[80%] overflow-hidden ">
         <Image
           src={images[0]}
@@ -41,7 +41,7 @@ const ProductTemplate: React.FC<ProductProps> = ({ id, name, price, onSale = fal
         )}
           {availableStock === 0 ? (
           <span className="absolute top-3 right-3 bg-[#0C1929] text-white text-[10px] px-2 py-1 rounded-xs shadow font-bold">
-            OUT OF STOCK
+            SOLD OUT
           </span>
           ) :( "")}
       </div>

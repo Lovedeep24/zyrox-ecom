@@ -157,7 +157,7 @@ const ProductListing: React.FC = () => {
    const [values, setValues] = useState([0, 3000]);
    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
    const[selectedGender,setSelectedGender]=useState<string[]>([]);
-   const categories = ["Shoes", "Shirts", "Accessories", "Football"];
+   const categories = ["Jersy","Shoes", "T-shirt","Shorts","Jacket","Combo","Sweatshirt", "Accessories", "Football","Oversized","Vintage","Classic","joggers"];
    const genders=["male","female","unisex"];
 
   const handleCategoryChange = (category: string, checked: boolean) => {
@@ -214,7 +214,7 @@ const ProductListing: React.FC = () => {
       </div>
     <div className="flex-1 flex  w-full bg-[#F2F2F2]">
       <div className="hidden sm:flex sticky sm:flex-col items-center top-0 h-screen w-[25%]">
-        <h2 className="text-2xl font-bold p-5">Filters</h2>
+        <h2 className="text-2xl font-bold p-5 flex w-full items-center gap-2"><span><SlidersHorizontal/></span>Filters</h2>
         <div className="sm:flex sm:flex-col w-[90%] hidden p-2 gap-3">
             <Accordion type="single" collapsible className="w-full ">
                <AccordionItem value="item-1">
@@ -284,15 +284,15 @@ const ProductListing: React.FC = () => {
             </Accordion>
         </div>
       </div>
-      <div className=" w-full sm:w-[75%]  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 p-5">
+      <div className=" w-full sm:w-[75%]  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 p-15">
         {filteredProducts.length > 0 ? (filteredProducts.map((product) => (
           <ProductTemplate  key={product.id} {...product} />
         ))) : (
           <div>No products found matching your filters</div>
         )}
       </div> 
-
-       <div className="sm:hidden fixed bottom-4 right-4 z-50">
+{/* <<------------------------------------------------F O R   M O B I L E----------------------------------------------------------------- */}
+       <div className="sm:hidden w-[90%] fixed bottom-4 right-4 z-50">
          <AnimatedModal 
            trigger={<>Filters <SlidersHorizontal className="inline ml-1" size={16} /></>}
            title="Filters">
