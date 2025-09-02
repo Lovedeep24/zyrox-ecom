@@ -5,11 +5,12 @@ interface ProductProps {
   name: string;
   price: number;
   onSale?: boolean;
+  availableStock?: number;
   salePercent?: number;
   images: string[];
 }
 
-const ProductTemplate: React.FC<ProductProps> = ({ id, name, price, onSale = false, salePercent = 0, images }) => {
+const ProductTemplate: React.FC<ProductProps> = ({ id, name, price, onSale = false, salePercent = 0, images,availableStock=0 }) => {
   const discountedPrice = onSale ? (price - (price * salePercent) / 100).toFixed(2) : price.toFixed(2);
 
   return (
@@ -17,29 +18,32 @@ const ProductTemplate: React.FC<ProductProps> = ({ id, name, price, onSale = fal
   key={id}
   className="group flex flex-col items-center justify-center  bg-[#FBFAF8] rounded-md shadow-sm overflow-hidden 
              border cursor-pointer transition hover:shadow-md
-             w-full max-w-[315px]  h-[470px]" >
+              w-[100%]  h-[400px]" >
   <div className="relative w-full h-[80%] overflow-hidden ">
         <Image
           src={images[0]}
           alt={name}
-          // fill
-          height={200}
-          width={200}
+          layout="fill"
+          objectFit="cover"
          className="absolute w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0"
         />
           <Image
             src={images[1]}
             alt={`${name} alt`}
-            // fill
-             height={200}
-          width={200}
+           layout="fill"
+            objectFit="cover"
             className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           />
         {onSale && (
-    <span className="absolute top-3 left-3 bg-gray-50 text-black text-[8px] px-2 py-1 rounded-sm shadow font-bold">
-      SAVE {salePercent}%
-    </span>
-  )}
+        <span className="absolute top-3 left-3 bg-[#BC2929] text-white text-[10px] px-2 py-1 rounded-xs shadow font-bold">
+          SAVE {salePercent}%
+        </span>
+        )}
+          {availableStock === 0 ? (
+          <span className="absolute top-3 right-3 bg-[#0C1929] text-white text-[10px] px-2 py-1 rounded-xs shadow font-bold">
+            OUT OF STOCK
+          </span>
+          ) :( "")}
       </div>
 
   {/* Info */}
