@@ -38,11 +38,10 @@ const sections = [
     background: "https://i.pinimg.com/1200x/63/d2/34/63d234d7a6e1df903c40b3603897ea98.jpg",
     audioSrc: "/sfx/whoosh-02.mp3",
   },
-  // ...
+
 ];
 
 export default function CategoriesTeam() {
-  const apiRef = React.useRef<FullScreenFXAPI>(null);
 
   return (
     <>

@@ -41,9 +41,6 @@ export default function ProductPreview({product, sizes, urls,setProductInfo,setS
   } else if (productInfo.price <= 0) {
     showToast("Price must be greater than 0!","warning","bottom-right");
     return false;
-  } else if (productInfo.images.length === 0) {
-    showToast("Please upload at least one product image!","warning","bottom-right");
-    return false;
   } else if (!productInfo.material.trim()) {
     showToast("Material is required!","warning","bottom-right");
     return false;
@@ -200,7 +197,7 @@ const launchProduct = async(product:ProductInfo)=>{
       <Label className="text-lg text-gray-600 dark:text-gray-400">Discounted Price: {product.isOnSale ? `$${product.price - (product.price * product.salePercent / 100)}` : "N/A"}</Label>
     </div>
      <div className="flex items-center gap-4 w-[60%]">
-      {finalizeProduct ? (<RippleButton onDoubleClick={()=>launchProduct(product)} className='w-full bg-black text-white' disabled={!finalizeProduct} rippleColor="#ADD8E6">Live Product</RippleButton>):
+      {finalizeProduct ? (<RippleButton onClick={()=>launchProduct(product)} className='w-full bg-black text-white' disabled={!finalizeProduct} rippleColor="#ADD8E6">Live Product</RippleButton>):
       (<Button variant="primary" className='w-full' onClick={finalizeProductInfo}>
         <ListCheckIcon/>
         {loading?"finalizing...":"Finalize Product"}

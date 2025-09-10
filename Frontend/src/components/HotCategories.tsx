@@ -1,8 +1,5 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
-// https://i.pinimg.com/736x/a4/0d/b5/a40db587124ed37ea2c0f0f47e64951c.jpg
-// https://i.pinimg.com/736x/f3/90/e0/f390e0cd005561be43dd42670e236868.jpg
 const def= {
   name: "JERSEY",
   img1: "https://i.pinimg.com/736x/a4/0d/b5/a40db587124ed37ea2c0f0f47e64951c.jpg",
