@@ -11,6 +11,9 @@ importers:
       '@gsap/react':
         specifier: ^2.1.2
         version: 2.1.2(gsap@3.13.0)(react@19.1.0)
+      '@lottiefiles/dotlottie-react':
+        specifier: ^0.16.0
+        version: 0.16.1(react@19.1.0)
       '@motionone/utils':
         specifier: ^10.18.0
         version: 10.18.0
@@ -629,6 +632,14 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.30':
     resolution: {integrity: sha512-GQ7Nw5G2lTu/BtHTKfXhKHok2WGetd4XYcVKGx00SjAk8GMwgJM3zr6zORiPGuOE+/vkc90KtTosSSvaCjKb2Q==}
+
+  '@lottiefiles/dotlottie-react@0.16.1':
+    resolution: {integrity: sha512-S2qyrFppwgx03f0yzd/8MGijTJH+2RwhcXSVZI0GMsvZH7Xh+4JdtX8xNku+MmQiVD8671Rg29yx73QZNFkfig==}
+    peerDependencies:
+      react: ^17 || ^18 || ^19
+
+  '@lottiefiles/dotlottie-web@0.51.1':
+    resolution: {integrity: sha512-73FV3nJ7vC+0sUDeM+tXs5GXblDAi8Z8qZ9scyZ/3hf6+EeocNHwx9YxkYrklWE3b0ESOT2uNt1Cmfyc40SaGQ==}
 
   '@mongodb-js/saslprep@1.3.0':
     resolution: {integrity: sha512-zlayKCsIjYb7/IdfqxorK5+xUMyi4vOKcFy10wKJYc63NSdKI8mNME+uJqfatkPmOSMMUiojrL58IePKBm3gvQ==}
@@ -4545,6 +4556,13 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@lottiefiles/dotlottie-react@0.16.1(react@19.1.0)':
+    dependencies:
+      '@lottiefiles/dotlottie-web': 0.51.1
+      react: 19.1.0
+
+  '@lottiefiles/dotlottie-web@0.51.1': {}
 
   '@mongodb-js/saslprep@1.3.0':
     dependencies:

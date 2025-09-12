@@ -113,11 +113,11 @@ const icons: Record<string, JSX.Element> = {
           <div className="flex w-[70%] flex-col items-center gap-2"
            aria-describedby={undefined}>
             <DialogHeader className="w-full">
-             <span className="border-2 rounded-lg w-fit p-2 hidden sm:block">{otpdialog ? <Mail className="h-10 w-10" /> : icons[mode]}</span>
+             <span className=" rounded-lg w-fit hidden sm:block">{otpdialog ? <Mail className="h-10 w-10" /> : icons[mode]}</span>
               <DialogTitle className="text-lg sm:text-2xl">
                 {otpdialog ? "Verify OTP" : titles[mode]}
               </DialogTitle>
-              <DialogDescription className=" sm:text-sm text-muted-foreground">
+              <DialogDescription className="text-xs font-medium sm:text-sm text-muted-foreground">
                 {otpdialog ? `We sent a code to ${email}` : descriptions[mode](email)}
               </DialogDescription>
             </DialogHeader>
@@ -230,7 +230,7 @@ const icons: Record<string, JSX.Element> = {
                  <Button variant="outline" className="w-full rounded-lg" onClick={()=>{setMode("loginotp")}}>
                    Login using OTP
                  </Button>
-                 <div className="w-full  text-md text-center p-2">
+                 <div className="w-full text-xs sm:text-md text-center p-2">
                  Don't have an account?{" "}
                  <button className="underline cursor-pointer" onClick={()=>setMode("signup")}>
                    Sign Up
