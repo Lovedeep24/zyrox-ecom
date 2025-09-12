@@ -231,7 +231,7 @@ const icons: Record<string, JSX.Element> = {
                    Login using OTP
                  </Button>
                  <div className="w-full text-xs sm:text-md text-center p-2">
-                 Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
                  <button className="underline cursor-pointer" onClick={()=>setMode("signup")}>
                    Sign Up
                  </button>
