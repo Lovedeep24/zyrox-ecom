@@ -1,15 +1,20 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useSelector, useDispatch } from "react-redux";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useToast } from './toast-1';
 import axios from "axios"
+import { setUser} from "../hooks/redux/userSlice";
 
 export default function OtpData({mode,setmode,email,setOtpdialog,onOpenChange,sendOtp}:any) {
+  const dispatch = useDispatch();
+  const { showToast } = useToast();
   const [otp, setOtp] = useState(["", "", "", ""])
-  const [message, setMessage] = useState("")
   const [timeLeft, setTimeLeft] = useState(60)
   const [canResend, setCanResend] = useState(false)
+  const[isLoading,setisLoading]=useState(false);
 
   // Countdown timer
   useEffect(() => {
@@ -33,20 +38,53 @@ export default function OtpData({mode,setmode,email,setOtpdialog,onOpenChange,se
     }
   }
 
+  
   const handleVerify = async() => {
     console.log(mode,email);
-    // {mode == "forgot" && setmode("newpassword")}
-    // onOpenChange(false);
-    // console.log(mode,email);
     if (otp.every((d) => d !== "")) {
+      setisLoading(true);
       try {
-        const res= await axios.post("http://localhost:5000/verify-otp",{email:email,otp:otp.join("")});
+        const res= await axios.post("http://localhost:5000/verify-otp",{email:email,otp:otp.join(""),mode:mode});
         console.log(res.data);
-      } catch (error) {
-        return alert("❌ Invalid OTP. Please try again.")
+        if(res.status === 200)
+        {
+          setisLoading(false);
+          if(mode == "forgot")
+          {
+            setOtpdialog(false)
+            setmode("newpassword")
+          }
+          else
+          {
+            const {token,user}=res.data
+            setOtpdialog(false)
+            localStorage.setItem("token", token);
+            dispatch(setUser({ ...user, token, isLoggedIn: true }));
+            setmode("signup")
+            onOpenChange(false);
+          }
+        }
+      } catch (error:any) {
+        setisLoading(false);
+        if(error.response.status === 402)
+        {
+          showToast(" OTP expired .","warning","top-right");
+        }
+        else if(error.response.status === 404)
+        {
+          showToast("OTP missing, Retry","warning","top-right");
+        }
+        else if(error.response.status  === 400)
+        {
+          showToast("Invalid OTP","error","top-right");
+        }
+        else{
+          showToast("Its from us. Please try again after some time.","error","top-right");
+          console.error("OTP not verified", error);
+        }
       }
     } else {
-      alert("⚠️ Please enter the complete 4-digit OTP.")
+      showToast(" Please enter the complete OTP.","error","top-right");
       return
     }
   }
@@ -93,7 +131,7 @@ export default function OtpData({mode,setmode,email,setOtpdialog,onOpenChange,se
         {/* Buttons */}
         <div className="flex flex-col gap-2">
           <Button className="w-full" onClick={handleVerify}>
-            Verify OTP
+            {isLoading ? "Verifying..." : "Verify OTP"}
           </Button>
 
           <Button
@@ -110,10 +148,6 @@ export default function OtpData({mode,setmode,email,setOtpdialog,onOpenChange,se
           <p className="mt-3 text-center text-sm text-muted-foreground">Incorrect email?<span className="cursor-pointer hover:underline" onClick={()=>{setOtpdialog(false); mode == "forgot" ? setmode("forgot") : setmode("loginotp")}}> change it</span></p>
         </div>
 
-        {/* Feedback message */}
-        {message && (
-          <p className="mt-3 text-center text-sm text-muted-foreground">{message}</p>
-        )}
 </div>
   )
 }

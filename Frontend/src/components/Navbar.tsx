@@ -1,16 +1,20 @@
 "use client"
 import React, { useEffect } from 'react'
+import { useSelector } from "react-redux";
+import { RootState } from "@/components/hooks/redux/store";
 import { useState } from 'react';
-import {User} from "lucide-react"
 import AuthDialog from './auth-dialog';
+import ProfileDropdwon from './ProfileDropdown';
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false)
+  const [openDialog,setOpenDialog]=useState(false);
+  const[openAuth,setOpenAuth]=useState(false);
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  const { user, isLoggedIn } = useSelector((state: RootState) => state.user);
   return (
     <div className={`fixed top-0 left-0 z-20 w-full transition-all duration-500 ${
           scrolled ? "  bg-[#0C1929]/90" : "  "
@@ -20,11 +24,13 @@ export default function Navbar() {
           <span className="font-bold">Logo</span>
           <p>ZYROX</p>
           <div className="space-x-4 ">
-            <button className='cursor-pointer border' onClick={() => setOpen(true)}><User/></button>
-
+            {isLoggedIn ?  <ProfileDropdwon
+            openDialog={openDialog}
+            onOpenDialogChange={setOpenDialog}
+          /> :<button className='cursor-pointer' onClick={()=>setOpenAuth(true)}>Login/Signup</button>}
           </div>
         </div>
-         <AuthDialog open={open} onOpenChange={setOpen} />
-      </div> 
+        <AuthDialog open={openAuth} onOpenChange={setOpenAuth} />
+      </div>
   )
 }

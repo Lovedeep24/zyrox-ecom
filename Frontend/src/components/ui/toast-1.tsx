@@ -97,7 +97,7 @@ const ToastContainer: React.FC<ToastContainerProps> = ({ toasts, position }) => 
   };
 
   return (
-    <div className={`fixed ${getPositionClasses()} w-full max-w-full sm:max-w-sm px-4 sm:px-0 space-y-2`}>
+    <div className={`fixed ${getPositionClasses()} w-full max-w-full sm:max-w-sm px-4 sm:px-0 space-y-2 z-[202]`}>
       <AnimatePresence>
         {toasts.map(({ toast }) => (
           <motion.div

@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default function Login() {
+
+export default function ViewProduct({productId:string}) {
   return (
     <div>
       

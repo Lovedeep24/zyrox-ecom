@@ -18,9 +18,7 @@ class CartItem(EmbeddedDocument):
 class User(Document):
     name = StringField()
     email = EmailField(unique=True, required=True)
-    phone = StringField(unique=True)
     password = StringField(required=True)
-    gender = StringField(choices=["male", "female", "unisex"], required=True)
     address = ListField(EmbeddedDocumentField(Address))
     role = StringField(default="user")
     wishlist = ListField(ReferenceField("Product"))

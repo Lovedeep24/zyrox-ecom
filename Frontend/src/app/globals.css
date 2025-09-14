@@ -116,7 +116,179 @@
   from {
     height: var(--radix-accordion-content-height);}
   to {
-    height: 0;}}}
+    height: 0;}}
+  @keyframes typing {
+  0%,
+100% {
+    transform: translateY(0);
+    opacity: 0.5;}
+  50% {
+    transform: translateY(-2px);
+    opacity: 1;}}
+  @keyframes loading-dots {
+  0%,
+100% {
+    opacity: 0;}
+  50% {
+    opacity: 1;}}
+  @keyframes wave {
+  0%,
+100% {
+    transform: scaleY(1);}
+  50% {
+    transform: scaleY(0.6);}}
+  @keyframes blink {
+  0%,
+100% {
+    opacity: 1;}
+  50% {
+    opacity: 0;}}
+  @keyframes text-blink {
+  0%,
+100% {
+    color: var(--primary);}
+  50% {
+    color: var(--muted-foreground);}}
+  @keyframes bounce-dots {
+  0%,
+100% {
+    transform: scale(0.8);
+    opacity: 0.5;}
+  50% {
+    transform: scale(1.2);
+    opacity: 1;}}
+  @keyframes thin-pulse {
+  0%,
+100% {
+    transform: scale(0.95);
+    opacity: 0.8;}
+  50% {
+    transform: scale(1.05);
+    opacity: 0.4;}}
+  @keyframes pulse-dot {
+  0%,
+100% {
+    transform: scale(1);
+    opacity: 0.8;}
+  50% {
+    transform: scale(1.5);
+    opacity: 1;}}
+  @keyframes shimmer-text {
+  0% {
+    background-position: 150% center;}
+  100% {
+    background-position: -150% center;}}
+  @keyframes wave-bars {
+  0%,
+100% {
+    transform: scaleY(1);
+    opacity: 0.5;}
+  50% {
+    transform: scaleY(0.6);
+    opacity: 1;}}
+  @keyframes shimmer {
+  0% {
+    background-position: 200% 50%;}
+  100% {
+    background-position: -200% 50%;}}
+  @keyframes spinner-fade {
+  0% {
+    opacity: 0;}
+  100% {
+    opacity: 1;}}
+  @keyframes dot-3-move {
+  20% {
+    transform: scale(1);}
+  45% {
+    transform: translateY(-18px) scale(0.45);}
+  60% {
+    transform: translateY(-90px) scale(0.45);}
+  80% {
+    transform: translateY(-90px) scale(0.45);}
+  100% {
+    transform: translateY(0px) scale(1);}}
+  @keyframes dot-2-move {
+  20% {
+    transform: scale(1);}
+  45% {
+    transform: translate(-16px, 12px) scale(0.45);}
+  60% {
+    transform: translate(-80px, 60px) scale(0.45);}
+  80% {
+    transform: translate(-80px, 60px) scale(0.45);}
+  100% {
+    transform: translateY(0px) scale(1);}}
+  @keyframes dot-1-move {
+  20% {
+    transform: scale(1);}
+  45% {
+    transform: translate(16px, 12px) scale(0.45);}
+  60% {
+    transform: translate(80px, 60px) scale(0.45);}
+  80% {
+    transform: translate(80px, 60px) scale(0.45);}
+  100% {
+    transform: translateY(0px) scale(1);}}
+  @keyframes rotate-move {
+  55% {
+    transform: translate(-50%, -50%) rotate(0deg);}
+  80% {
+    transform: translate(-50%, -50%) rotate(360deg);}
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);}}
+  @keyframes index {
+  0%,
+  100% {
+    z-index: 3;}
+  33.3% {
+    z-index: 2;}
+  66.6% {
+    z-index: 1;}}}
+
+    .container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  filter: url(#goo);
+}
+
+/* Keep your dots as they are */
+.dot {
+  width: 40px;
+  height: 40px;
+  background: #4f46e5;
+  border-radius: 50%;
+  position: absolute;
+  animation: orbit 3s infinite linear;
+}
+
+/* Text in the center */
+.center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  color: white;
+  font-weight: bold;
+}
+
+/* Example: show text when container is hovered */
+.container:hover .center-text {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(80px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(80px) rotate(-360deg);
+  }
+}
+
 body {
   @apply font-sans;
 }

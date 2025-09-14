@@ -118,25 +118,29 @@ const launchProduct = async(product:ProductInfo)=>{
     console.log(res)
     if(res.status == 201)
     {
+      setLoading(false)
       showToast("Product is Live!","success","bottom-right")
       resetAll();
-    }
-    else if(res.status === 400)
-    {
-      showToast("Some data is missing","error","bottom-left")
-    }
-    else if(res.status === 500)
-    {
-      showToast("We are working on it try again later","error","bottom-right")
+      return
     }
     return setLoading(false)
-  } catch (error) {
-    showToast("Something went wrong try again","error","bottom-right")
+  } catch (error:any) {
     setLoading(false)
+    if(error.response.status === 400)
+    {
+     return showToast("Some data is missing","error","bottom-right")
+    }
+    else if(error.response.status === 500)
+    {
+     return showToast("We are working on it try again later","error","bottom-right")
+    }
+    else{
+     return showToast("Something went wrong try again","error","bottom-right")
+    }
   }
 
 }
-  return (
+return (
 <div className='flex flex-col h-full w-full items-center '>
     <h3 className="text-4xl font-medium font-sans">Product Overview</h3>
    <div className='flex gap-2 w-full h-full '>
@@ -222,5 +226,15 @@ const launchProduct = async(product:ProductInfo)=>{
     </div>
   </div>
  </div> 
+ {loading && (
+      <div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-50">
+          <div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-50">
+        <div className="flex flex-col items-center gap-3 p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-lg">
+          <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-gray-700 dark:text-gray-200">Making Product Live...</p>
+        </div>
+      </div>
+      </div>
+    )}
 </div>
 )}

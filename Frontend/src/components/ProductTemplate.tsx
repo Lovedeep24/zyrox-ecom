@@ -1,40 +1,47 @@
 import React from "react";
 import Image from "next/image";
+
 interface ProductProps {
-  id: string | number;
+  _id: string;
   name: string;
   price: number;
-  onSale?: boolean;
-  availableStock?: number;
-  salePercent?: number;
-  images: string[];
+  isOnSale: boolean;
+  availableStock: number;
+  salePercent: number;
+  photos: string[];
 }
 
-const ProductTemplate: React.FC<ProductProps> = ({ id, name, price, onSale = false, salePercent = 0, images,availableStock=0 }) => {
-  const discountedPrice = onSale ? (price - (price * salePercent) / 100).toFixed(2) : price.toFixed(2);
+const ProductTemplate: React.FC<ProductProps> = ({  _id,
+  name,
+  price,
+  isOnSale,
+  availableStock,
+  salePercent,
+  photos, }) => {
+  const discountedPrice = isOnSale ? (price - (price * salePercent) / 100).toFixed(2) : price.toFixed(2);
 
   return (
    <div
-  key={id}
+  key={_id}
   className="group flex flex-col items-center justify-center  bg-[#FBFAF8] rounded-md shadow-sm overflow-hidden 
              border cursor-pointer transition hover:shadow-md
               w-[100%]  h-[450px]" >
   <div className="relative w-full h-[80%] overflow-hidden ">
         <Image
-          src={images[0]}
+          src={photos[0]}
           alt={name}
           layout="fill"
           objectFit="cover"
          className="absolute w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0"
         />
           <Image
-            src={images[1]}
+            src={photos[1]}
             alt={`${name} alt`}
            layout="fill"
             objectFit="cover"
             className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           />
-        {onSale && (
+        {isOnSale && (
         <span className="absolute top-3 left-3 bg-[#BC2929] text-white text-[10px] px-2 py-1 rounded-xs shadow font-bold">
           SAVE {salePercent}%
         </span>
@@ -50,7 +57,7 @@ const ProductTemplate: React.FC<ProductProps> = ({ id, name, price, onSale = fal
   <div className=" w-full p-5 h-[20%]">
     <h3 className="text-[12px] font-bold text-gray-900">{name}</h3>
     <div className="mt-1 text-[10px] font-medium">
-      {onSale ? (
+      {isOnSale ? (
         <div className="flex gap-2 items-center">
           <span className="text-red-700">Rs.{discountedPrice}</span>
           <span className="text-gray-400 line-through ">Rs.{price.toFixed(2)}</span>

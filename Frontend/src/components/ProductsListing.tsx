@@ -1,17 +1,51 @@
 "use client"
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState ,useEffect } from "react";
 import ProductTemplate from "./ProductTemplate";
 import { Checkbox } from "@/components/ui/animate-checkbox";
 import { MinimalToggle} from "@/components/ui/toggle"
 import { AnimatedModal } from '@/components/ui/animated-modal';
 import {SlidersHorizontal } from 'lucide-react';
 import { DualRangeSlider } from '@/components/ui/dual-range-slider';
+import { useToast } from './ui/toast-1';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import axios from "axios";
+export interface Size {
+  label: string;
+  units: number;
+}
+
+export interface Review {
+  userId: string;
+  comment: string;
+  rating: number;
+  createdAt: string;
+}
+
+export interface Product {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  size: Size[];
+  material: string;
+  category: string;
+  gender: string;
+  brand: string;
+  photos: string[];
+  tags: string[];
+  availableStock: number;
+  rating: number;
+  reviews: Review[];
+  isOnSale: boolean;
+  salePercent: number;
+  isDeleted: boolean;
+  createdAt: string; // stored as ISO/date string in your DB
+}
 
 const ProductListing: React.FC = () => {
   
@@ -152,6 +186,7 @@ const ProductListing: React.FC = () => {
       availableStock: 0,
     },
   ];
+   const { showToast } = useToast();
    const [inStockOnly, setInStockOnly] = useState(false);
    const[isOnsale,setIsOnSale]=useState<boolean>(false);  
    const [values, setValues] = useState([0, 3000]);
@@ -159,7 +194,23 @@ const ProductListing: React.FC = () => {
    const[selectedGender,setSelectedGender]=useState<string[]>([]);
    const categories = ["Jersy","Shoes", "T-shirt","Shorts","Jacket","Combo","Sweatshirt", "Accessories", "Football","Oversized","Vintage","Classic","joggers"];
    const genders=["male","female","unisex"];
+   const[products,setProducts]=useState<Product[]>([]);
+   useEffect(()=>{
+    fetchAllProducts();
+   },[])
 
+   const fetchAllProducts=async()=>{
+    try {
+      const res=await axios.get("http://localhost:5000/fetch-all-products")
+      console.log(res)
+      if(res.status === 200)
+      {
+        setProducts(res.data.products)
+      }
+    } catch (error) {
+       showToast("Error fetching details","error","top-right")
+    }
+   }
   const handleCategoryChange = (category: string, checked: boolean) => {
     setSelectedCategories((prev) => {
       if (checked) {
@@ -186,7 +237,7 @@ const ProductListing: React.FC = () => {
     };
 
   const filteredProducts = useMemo(() => {
-    let result = [...sampleProducts];
+    let result = [...products];
     if (inStockOnly) {
       result = result.filter((p) => p.availableStock > 0);
     }
@@ -203,10 +254,10 @@ const ProductListing: React.FC = () => {
       result = result.filter((p) => selectedGender.includes(p.gender));
     }
     if(isOnsale){
-      result = result.filter((p)=>p.onSale === true)
+      result = result.filter((p)=>p.isOnSale === true)
     }
     return result;
-  }, [inStockOnly, selectedCategories,selectedGender, sampleProducts,isOnsale,values]);
+  }, [inStockOnly, selectedCategories,selectedGender, products,isOnsale,values]);
   return (
     <div className="w-full h-screen flex flex-col items-end">
       <div className="w-full h-[60%] shrink-0">
@@ -286,7 +337,7 @@ const ProductListing: React.FC = () => {
       </div>
       <div className=" w-full sm:w-[75%]  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 p-15">
         {filteredProducts.length > 0 ? (filteredProducts.map((product) => (
-          <ProductTemplate  key={product.id} {...product} />
+          <ProductTemplate  key={product._id} {...product} />
         ))) : (
           <div>No products found matching your filters</div>
         )}
